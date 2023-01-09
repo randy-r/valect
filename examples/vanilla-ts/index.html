@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Valect</title>
+    <style></style>
+  </head>
+  <body>
+    <form action="#" id="form-2">
+      <input form="form-2" name="bar" type="text" value="foo" />
+      <input type="checkbox" />
+      <select>
+        <option value="x">x</option>
+        <option value="y">y</option>
+      </select>
+      <input type="text" value="bar" />
+
+      <fieldset
+        aria-placeholder="Select..."
+        name="mySelect"
+        role="combobox checkbox"
+        tabindex="0"
+        data-vt-open="false"
+        data-vt
+        id="fieldset-2"
+      >
+        <div data-vt-main></div>
+
+        <div data-vt-area>
+          <label for="g1">
+            <input
+              type="checkbox"
+              id="g1"
+              value="g1"
+              data-vt-groupvalue="g1"
+            />group 1</label
+          >
+          <div data-vt-groupcontent>
+            <label for="bike">
+              <input
+                data-vt-group="g1"
+                type="checkbox"
+                id="bike"
+                value="bike"
+              />I have a bike</label
+            >
+            <label for="car">
+              <input data-vt-group="g1" type="checkbox" id="car" value="car" />
+              I have a car</label
+            >
+            <label for="g1.1" data-vt-label="ABC">
+              <input
+                type="checkbox"
+                id="g1.1"
+                value="g1.1"
+                data-vt-group="g1"
+                data-vt-groupvalue="g1.1"
+              />group 1.1</label
+            >
+            <div data-vt-groupcontent>
+              <label for="tricycle">
+                <input
+                  data-vt-group="g1.1"
+                  type="checkbox"
+                  id="tricycle"
+                  value="tricycle"
+                  checked
+                />I have a trycicle</label
+              >
+            </div>
+          </div>
+
+          <label for="ship">
+            <input type="checkbox" id="ship" value="ship" checked />I have a
+            ship</label
+          >
+        </div>
+        <div data-vt-backdrop></div>
+      </fieldset>
+      <button type="submit">submit</button>
+      <button type="reset">reset</button>
+    </form>
+
+    <script type="module" src="/src/main.ts"></script>
+
+    <script>
+      const form = document.getElementById('form-2');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        console.log(Object.fromEntries(formData));
+        return;
+
+        // console.log(Object.fromEntries(formData), form?.vtValues?.all);
+      });
+      const fieldset = document.querySelector('[data-vt]');
+      fieldset.addEventListener('change', (e) => {
+        console.log('value', e.currentTarget.value);
+        console.log('array', e.currentTarget.valueAsArray);
+        console.log('flat', e.currentTarget.valueAsFlatGroups());
+        console.log('tree', e.currentTarget.valueAsTreeGroups());
+      });
+      fieldset.addEventListener('vt-change', (e) => {});
+    </script>
+  </body>
+</html>
