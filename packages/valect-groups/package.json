@@ -1,7 +1,7 @@
 {
-  "name": "valect",
-  "version": "0.0.2",
-  "description": "Valect.",
+  "name": "valect-groups",
+  "version": "0.0.3",
+  "description": "Valect Groups.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -12,13 +12,15 @@
     "url": "git+https://github.com/randy-r/valect.git"
   },
   "keywords": [
-    "multi select"
+    "group multi select"
   ],
   "author": "randy-r",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/randy-r/valect/issues"
   },
-  "devDependencies": {},
-  "homepage": "https://randy-r.github.io/valect/"
+  "homepage": "https://randy-r.github.io/valect/",
+  "peerDependencies": {
+    "valect": "^0.0.2"
+  }
 }
