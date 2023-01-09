@@ -1,0 +1,24 @@
+{
+  "name": "valect",
+  "version": "0.0.1",
+  "description": "Valect.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/randy-r/valect.git"
+  },
+  "keywords": [
+    "multi select"
+  ],
+  "author": "randy-r",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/randy-r/valect/issues"
+  },
+  "devDependencies": {},
+  "homepage": "https://randy-r.github.io/valect/"
+}
