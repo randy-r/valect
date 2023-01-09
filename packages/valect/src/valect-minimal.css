@@ -1,0 +1,132 @@
+[data-vt] {
+  position: relative;
+  border-radius: 2px;
+  box-sizing: border-box;
+  isolation: isolate;
+  position: relative;
+  padding: 0;
+  border: none;
+  border-color: transparent;
+  display: inline-block;
+  width: fit-content;
+  /* chromium default */
+  min-width: 177px;
+  font-size: 0.8125rem;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+[data-vt-main] {
+  box-sizing: border-box;
+  position: relative;
+  border: 1px solid rgb(118, 118, 118);
+  border-radius: 2px;
+  padding: 0.18em 1.75em 0.18em 0.4em;
+  min-height: 21px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 50ch;
+}
+
+[data-vt-value] {
+  padding-inline-end: 0.2em;
+  white-space: nowrap;
+}
+
+[data-vt-value]::after {
+  content: ',';
+  display: inline;
+}
+
+[data-vt-value]:last-child::after {
+  content: '';
+}
+
+[data-vt][data-vt-open='false']:focus-visible [data-vt-main] {
+  border-color: transparent;
+}
+
+[data-vt][data-vt-open='true']:focus-visible {
+  outline: none;
+}
+
+[data-vt-main]:hover {
+  /* cursor: default; */
+}
+
+[data-vt-main]::after {
+  /* braille whitespace */
+  content: '⠀';
+  position: absolute;
+  color: inherit;
+  display: inline;
+  right: 0;
+  vertical-align: middle;
+  margin-inline-end: 0.5em;
+  background-color: currentColor;
+  filter: opacity(0.6);
+  clip-path: polygon(0% 25%, 50% 45%, 100% 25%, 100% 45%, 50% 65%, 0% 45%);
+}
+
+[data-vt-area] {
+  background-color: #fff;
+  display: none;
+  position: absolute;
+  border: 1px solid rgb(118, 118, 118);
+  position: relative;
+  max-height: 50vh;
+  overflow-y: auto;
+  z-index: 2;
+  box-sizing: border-box;
+  padding-block: 0.4em 0.4em;
+}
+
+[data-vt-open='true'] [data-vt-area] {
+  position: absolute;
+  display: block;
+  align-items: center;
+  min-width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+[data-vt] input[type='checkbox'],
+[data-vt] label {
+  line-height: 1.5;
+  margin: 0;
+}
+
+[data-vt] label {
+  width: max-content;
+  width: auto;
+  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding-inline: 0.5em;
+}
+
+[data-vt-groupcontent],
+[data-vt] label {
+  padding-inline-start: 0.5em;
+}
+
+[data-vt] [data-vt-groupcontent] > * {
+  padding-inline-start: 1.5em;
+}
+
+[data-vt-backdrop] {
+  display: none;
+}
+
+[data-vt-open='true'] > [data-vt-backdrop] {
+  background-color: transparent;
+  display: block;
+  isolation: isolate;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}

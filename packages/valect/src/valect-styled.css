@@ -1,0 +1,156 @@
+[data-vt] {
+  --clr-accent: #fad02c;
+  --clr-accent: hsl(60, 100%, 80%);
+  --clr-accent: hsl(0, 100%, 48%);
+  --clr-surf-a: #90adc6;
+  --clr-surf-b: #e9eaec;
+  --clr-surf-c: #333652;
+
+  --clr-surf-a: #03060b;
+  --clr-surf-a: hsl(271, 26%, 23%);
+
+  --clr-surf-a: #bfd7ed;
+  --clr-surf-b: #60a3d9;
+  --clr-surf-c: #0074b7;
+  --clr-surf-d: #003b73;
+  --clr-surf-d-dim: hsl(209, 100%, 18%);
+  --clr-surf-e: #fff;
+}
+
+[data-vt] {
+  font-size: 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  box-sizing: content-box;
+  word-spacing: -1px;
+}
+
+[data-vt]:focus-visible [data-vt-main] {
+  outline: none;
+}
+
+[data-vt][data-vt-open='false']:focus-visible [data-vt-main] {
+  border-color: var(--clr-surf-b);
+  outline: 1px solid var(--clr-surf-e);
+  outline-offset: -2px;
+}
+
+[data-vt-main] {
+  color: var(--clr-surf-d);
+  background-color: var(--clr-surf-d-dim);
+  border-color: var(--clr-surf-b);
+  gap: 0.25rem;
+  border-radius: 5px;
+  padding-block: 0.2em;
+  min-width: 60ch;
+  cursor: pointer;
+}
+
+[data-vt-main]::after {
+  color: var(--clr-surf-a);
+  color: var(--clr-accent);
+  filter: none;
+}
+
+[data-vt-placeholder] {
+  display: block;
+  flex: 1;
+}
+
+[data-vt-placeholder],
+[data-vt-value] {
+  border-radius: 3px;
+  border: 1px solid;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background-color: var(--clr-surf-e);
+  background-color: var(--clr-surf-e);
+  border-color: var(--clr-surf-b);
+  padding: 0.1em 0.8em 0.1em 0.7em;
+}
+
+[data-vt-open='true'] [data-vt-main],
+[data-vt-main]:hover {
+  background-color: var(--clr-surf-d);
+}
+
+[data-vt-value]::after {
+  content: '';
+}
+
+[data-vt-area] {
+  margin-top: 0.25rem;
+  color: var(--clr-surf-e);
+  background-color: var(--clr-surf-d-dim);
+  border-color: var(--clr-surf-b);
+  border-radius: 5px;
+}
+
+[data-vt-area] label:hover {
+  background-color: var(--clr-surf-d-dim);
+  background-color: var(--clr-accent);
+}
+
+[data-vt-groupcontent] {
+  padding-inline-start: unset;
+}
+
+[data-vt] label {
+  padding-inline-start: unset;
+  padding-block: 0.3em;
+  cursor: pointer;
+}
+
+[data-vt] [data-vt-groupcontent] > * {
+  padding-inline-start: unset;
+}
+
+[data-vt-area] input[type='checkbox'] {
+  /* display none or visibility hidden will nuke any keyboard nav, better avoid */
+  height: 0;
+  position: absolute;
+}
+
+[data-vt-area] {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+[data-vt-area] > label {
+  padding-inline-start: 0.5em;
+}
+
+.level-1 > label {
+  padding-inline-start: 1.5em;
+}
+
+.level-2 > label {
+  padding-inline-start: 2.5em;
+}
+
+[data-vt-area] input:checked + label {
+}
+
+[data-vt-area] label::before {
+  content: '⠀';
+  background-color: currentColor;
+  height: 0.75em;
+  aspect-ratio: 1 / 1;
+  clip-path: polygon(39% 60%, 0 42%, 39% 100%, 100% 20%, 100% 0);
+  display: inline-block;
+  color: var(--clr-surf-d);
+}
+
+[data-vt-area] input:checked + label::before {
+  color: var(--clr-accent);
+}
+
+[data-vt-area] input:checked:focus-visible + label:before,
+[data-vt-area] input:checked + label:hover:before {
+  color: var(--clr-surf-e);
+}
+
+[data-vt-area] input:focus-visible + label {
+  outline: 1px solid var(--clr-surf-e);
+  background-color: var(--clr-accent);
+}

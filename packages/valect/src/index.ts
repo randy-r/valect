@@ -1,1 +1,2 @@
-export const hello: string = 'world';
+import { Valect } from './linear-check';
+export { Valect };
