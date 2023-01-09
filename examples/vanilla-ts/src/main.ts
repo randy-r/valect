@@ -1,4 +1,5 @@
-import { Valect } from 'valect';
+// import { Valect } from 'valect';
+import { Valect } from 'valect-groups';
 import 'valect/src/valect-minimal.css';
 
 const vt = document.querySelector('[data-vt]') as HTMLFieldSetElement;
