@@ -1,5 +1,6 @@
 import { IValueAttacher, ValectBase } from 'valect/dist/valect-base';
-import { VtFieldSet } from 'valect/dist/valect.types';
+import { VtFieldSet as VtFieldSetBase } from 'valect/dist/valect.types';
+import { LinearValueVtFieldSet } from 'valect/dist/linear-value';
 
 export type VtGroup = {
   all: boolean;
@@ -119,10 +120,12 @@ function createBucket(
   return bucket;
 }
 
-export type GroupValueVtFieldSet = VtFieldSet & {
+export type GroupValueVtFieldSet = VtFieldSetBase & {
   valueAsTreeGroups: () => VtGroup;
   valueAsFlatGroups: () => VtFlatGroup[]; // need to map this
 };
+
+export type VtFieldSet = GroupValueVtFieldSet & LinearValueVtFieldSet;
 
 export class GroupValueAttacher implements IValueAttacher {
   attach(valectBase: ValectBase): void {

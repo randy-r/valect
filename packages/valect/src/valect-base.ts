@@ -21,6 +21,7 @@ export class ValectBase {
     listener: any;
     el: HTMLElement;
     type: keyof HTMLElementEventMap;
+    options?: boolean | AddEventListenerOptions;
   }[];
   private vas: IValueAttacher[];
   private propag: ICheckPropagator | null;
@@ -58,8 +59,9 @@ export class ValectBase {
     options?: boolean | AddEventListenerOptions
   ) {
     if (!element) return;
-    element.addEventListener(type, listener, options ?? EVENT_OPTIONS);
-    this.hs.push({ el: element, listener, type });
+    const opts = options ?? EVENT_OPTIONS;
+    element.addEventListener(type, listener, opts);
+    this.hs.push({ el: element, listener, type, options: opts });
   }
 
   toggle() {
@@ -235,7 +237,7 @@ export class ValectBase {
 
   unwire() {
     for (const h of this.hs) {
-      h.el.removeEventListener(h.type, h.listener);
+      h.el.removeEventListener(h.type, h.listener, h.options);
     }
   }
 }
