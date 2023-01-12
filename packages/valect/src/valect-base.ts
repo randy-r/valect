@@ -87,7 +87,7 @@ export class ValectBase {
 
     this.collectLabelsByValue();
 
-    const backdrop = document.querySelector(
+    const backdrop = root.querySelector(
       '[data-vt-backdrop]'
     ) as HTMLElement | null;
 

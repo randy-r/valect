@@ -1,6 +1,6 @@
-import { IValueAttacher, ValectBase } from 'valect/dist/valect-base';
-import { VtFieldSet as VtFieldSetBase } from 'valect/dist/valect.types';
-import { LinearValueVtFieldSet } from 'valect/dist/linear-value';
+import { IValueAttacher, ValectBase } from 'valect/src/valect-base';
+import { VtFieldSet as VtFieldSetBase } from 'valect/src/valect.types';
+import { VtFieldSet as LinearValueVtFieldSet } from 'valect/src/linear-value';
 
 export type VtGroup = {
   all: boolean;
@@ -138,7 +138,7 @@ export class GroupValueAttacher implements IValueAttacher {
       if (!bucket) {
         if (!allBoxes) {
           allBoxes = Array.from(
-            root.querySelectorAll('input[type=checkbox]')
+            root.querySelectorAll('input[type=checkbox], input[type=radio]')
           ) as HTMLInputElement[];
         }
         bucket = createBucket(allBoxes, root.name);

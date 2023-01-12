@@ -1,6 +1,6 @@
 {
   "name": "valect",
-  "version": "0.0.4",
+  "version": "0.0.8",
   "description": "Valect.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,6 +19,5 @@
   "bugs": {
     "url": "https://github.com/randy-r/valect/issues"
   },
-  "devDependencies": {},
   "homepage": "https://randy-r.github.io/valect/"
 }

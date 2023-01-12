@@ -1,6 +1,6 @@
 {
   "name": "valect-groups",
-  "version": "0.0.4",
+  "version": "0.0.8",
   "description": "Valect Groups.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -21,6 +21,6 @@
   },
   "homepage": "https://randy-r.github.io/valect/",
   "peerDependencies": {
-    "valect": "^0.0.4"
+    "valect": "^0.0.8"
   }
 }

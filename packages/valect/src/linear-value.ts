@@ -1,7 +1,7 @@
 import { IValueAttacher, ValectBase } from './valect-base';
-import { VtFieldSet, VtForm } from './valect.types';
+import { VtFieldSet as VtFieldSetBase, VtForm } from './valect.types';
 
-export type LinearValueVtFieldSet = VtFieldSet & {
+export type VtFieldSet = VtFieldSetBase & {
   value: string;
   valueAsArray: string[];
 };
@@ -13,7 +13,7 @@ export class LinearValueAttacher implements IValueAttacher {
       .filter((box) => box.checked)
       .map((box) => box.value);
 
-    const root = valectBase.root as LinearValueVtFieldSet;
+    const root = valectBase.root as VtFieldSet;
     root.value = JSON.stringify(flatArray);
     root.valueAsArray = flatArray;
 
