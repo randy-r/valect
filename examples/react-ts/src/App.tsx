@@ -2,7 +2,7 @@ import { ValectDropdown } from './ValectDropdown';
 import { ValectRadioDropdown } from './ValectRadioDropdown';
 import { ValectReactWrapper } from './ValectReactWrapper';
 import 'valect/src/valect-minimal.css';
-
+import { ReactValectContainer } from './ReactValectContainer';
 
 function App() {
   return (
@@ -27,6 +27,7 @@ function App() {
       <ValectRadioDropdown />
       <ValectDropdown />
       <ValectReactWrapper />
+      <ReactValectContainer />
 
       <button type="submit">submit</button>
       <button type="reset">reset</button>
