@@ -31,7 +31,7 @@ export function ValectReactWrapper() {
       selectedArea={
         <span>
           {selectionTracker.map((x) => (
-            <span className={s.selectionItem}>{x}</span>
+            <span key={x} className={s.selectionItem}>{x}</span>
           ))}
         </span>
       }
