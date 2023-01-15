@@ -4,9 +4,8 @@ import { ValectBase } from 'valect/src/valect-base';
 import { GroupValueAttacher } from './group-value';
 
 export class Valect extends ValectBase {
-  constructor(root: HTMLFieldSetElement) {
+  constructor() {
     super(
-      root,
       [new LinearValueAttacher(), new GroupValueAttacher()],
       new CheckPropagator()
     );

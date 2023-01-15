@@ -3,7 +3,7 @@ import { LinearValueAttacher } from './linear-value';
 import { ValectBase } from './valect-base';
 
 export class Valect extends ValectBase {
-  constructor(root: HTMLFieldSetElement) {
-    super(root, [new LinearValueAttacher()], new CheckPropagator());
+  constructor() {
+    super([new LinearValueAttacher()], new CheckPropagator());
   }
 }

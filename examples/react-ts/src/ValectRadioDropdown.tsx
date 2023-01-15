@@ -1,17 +1,17 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Valect } from 'valect/src/index';
 import { VtFieldSet } from 'valect/src/linear-value';
 
-import 'valect/src/valect-minimal.css';
 
 export function ValectRadioDropdown() {
+  const [selected, setSelected] = useState();
   const fieldsetRef = useRef<HTMLFieldSetElement>(null);
   useEffect(() => {
     const fieldset = fieldsetRef.current;
     if (!fieldset) return;
 
-    const valect = new Valect(fieldset);
-    valect.wire();
+    const valect = new Valect();
+    valect.wire(fieldset);
 
     return () => {
       valect.unwire();

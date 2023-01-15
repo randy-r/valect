@@ -1,12 +1,15 @@
 import { ValectDropdown } from './ValectDropdown';
 import { ValectRadioDropdown } from './ValectRadioDropdown';
+import { ValectReactWrapper } from './ValectReactWrapper';
+import 'valect/src/valect-minimal.css';
+
 
 function App() {
   return (
     <form
       action="#"
       id="form-2"
-       onSubmit={(e) => {
+      onSubmit={(e) => {
         e.preventDefault();
         const target = e.target as HTMLFormElement;
         const formData = new FormData(target);
@@ -23,6 +26,7 @@ function App() {
 
       <ValectRadioDropdown />
       <ValectDropdown />
+      <ValectReactWrapper />
 
       <button type="submit">submit</button>
       <button type="reset">reset</button>

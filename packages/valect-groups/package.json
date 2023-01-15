@@ -19,8 +19,5 @@
   "bugs": {
     "url": "https://github.com/randy-r/valect/issues"
   },
-  "homepage": "https://randy-r.github.io/valect/",
-  "peerDependencies": {
-    "valect": "^0.0.8"
-  }
+  "homepage": "https://randy-r.github.io/valect/"
 }

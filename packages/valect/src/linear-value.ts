@@ -8,8 +8,9 @@ export type VtFieldSet = VtFieldSetBase & {
 
 export class LinearValueAttacher implements IValueAttacher {
   attach(valectBase: ValectBase): void {
-    const flatArray = valectBase
-      .getAllBoxes()
+    const allBoxes = valectBase.getAllBoxes();
+    console.log(allBoxes, allBoxes.map(b => b.checked))
+    const flatArray = allBoxes
       .filter((box) => box.checked)
       .map((box) => box.value);
 
@@ -19,9 +20,15 @@ export class LinearValueAttacher implements IValueAttacher {
 
     const form = root.form as VtForm | null;
 
-    valectBase.adl(form, 'formdata', (e) => {
-      // only string value in form data
-      e.formData.set(root.name, root.value);
-    });
+    // TODO this should registered only once
+    valectBase.adl(
+      form,
+      'formdata',
+      (e) => {
+        // only string value in form data
+        e.formData.set(root.name, root.value);
+      },
+      { once: true }
+    );
   }
 }

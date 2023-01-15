@@ -16,32 +16,27 @@ const qsa = <E extends Element = Element>(
 ): NodeListOf<E> => el.querySelectorAll(selectors);
 
 export class ValectBase {
-  private _root: VtFieldSet;
+  private _root: VtFieldSet | null = null;
   private hs: {
     listener: any;
     el: HTMLElement;
     type: keyof HTMLElementEventMap;
     options?: boolean | AddEventListenerOptions;
-  }[];
+  }[] = [];
   private vas: IValueAttacher[];
   private propag: ICheckPropagator | null;
-  private labelsByValue: Record<string, string>;
+  private labelsByValue: Record<string, string> = {};
 
   constructor(
-    root: HTMLFieldSetElement,
     valueAttachers: IValueAttacher[] = [],
     checkPropag: ICheckPropagator | null = null
   ) {
-    this.hs = [];
-    this._root = root as VtFieldSet;
-    root.setAttribute('tabIndex', '0');
-    root.setAttribute('data-vt-open', 'false');
     this.vas = valueAttachers;
     this.propag = checkPropag;
-    this.labelsByValue = {};
   }
 
   get root() {
+    if (!this._root) throw new Error('Make sure to call wire.');
     return this._root;
   }
 
@@ -80,9 +75,18 @@ export class ValectBase {
     root.setAttribute('data-vt-open', 'false');
   }
 
-  wire() {
+  wire(rootElement: HTMLFieldSetElement) {
     this.unwire();
+
+    this.hs = [];
+    this.labelsByValue = {};
+
+    this._root = rootElement as VtFieldSet;
+
     const root = this.root;
+
+    root.setAttribute('tabIndex', '0');
+    root.setAttribute('data-vt-open', 'false');
     root.name = root.name ?? 'vtdefault';
 
     this.collectLabelsByValue();
@@ -93,6 +97,7 @@ export class ValectBase {
 
     const main = this.root.querySelector('[data-vt-main]') as HTMLElement;
     const area = qsa(root, '[data-vt-area')[0] as HTMLElement;
+    const selectedArea = qsa(root, '[data-vt-selected-area]')[0] as HTMLElement;
     if (!main || !area)
       throw new Error(
         'Please define a [data-vt-main] & [data-vt-area] element inside [data-vt].'
@@ -102,7 +107,7 @@ export class ValectBase {
     // the correct expected form if an inconsistent one was provided
     for (const va of this.vas) va.attach(this);
 
-    this.paintSelected(main);
+    this.paintSelected(selectedArea);
 
     for (const box of this.getAllBoxes()) {
       box.setAttribute('tabindex', '-1');
@@ -180,7 +185,7 @@ export class ValectBase {
       const el = e.target as HTMLInputElement;
       this.propag?.propagate(this, el);
       for (const va of this.vas) va.attach(this);
-      this.paintSelected(main);
+      this.paintSelected(selectedArea);
     });
 
     this.adl(
@@ -189,7 +194,7 @@ export class ValectBase {
       () => {
         // TODO better solution than setTimeout
         setTimeout(() => {
-          this.paintSelected(main);
+          this.paintSelected(selectedArea);
         }, 10);
       },
       { capture: false, passive: false }
@@ -208,7 +213,8 @@ export class ValectBase {
       return acc;
     }, {} as Record<string, string>);
   }
-  private paintSelected(main: HTMLElement) {
+  private paintSelected(container?: HTMLElement) {
+    if (!container) return;
     // checked but not groups
     const boxes = this.getAllBoxes().filter(
       (i) => i.checked && !i.getAttribute('data-vt-groupvalue')
@@ -219,7 +225,7 @@ export class ValectBase {
       const s = document.createElement('span');
       s.innerHTML = placeholder;
       s.setAttribute('data-vt-placeholder', 'true');
-      main.replaceChildren(s);
+      container.replaceChildren(s);
 
       return;
     }
@@ -232,7 +238,7 @@ export class ValectBase {
       s.setAttribute('data-vt-value', box.value);
       labels.push(s);
     }
-    main.replaceChildren(...labels);
+    container.replaceChildren(...labels);
   }
 
   unwire() {

@@ -55,6 +55,16 @@
   /* cursor: default; */
 }
 
+[data-vt-main]::before {
+  /* trick to not allow the box collapse less than a character's height */
+  content: 'l';
+  display: inline-block;
+  width: 0;
+  pointer-events: none;
+  visibility: hidden;
+  color: transparent;
+}
+
 [data-vt-main]::after {
   /* braille whitespace */
   content: '⠀';

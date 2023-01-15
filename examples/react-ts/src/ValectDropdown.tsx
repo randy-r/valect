@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react';
 import { Valect } from 'valect-groups/src/index';
 import { VtFieldSet } from 'valect-groups/src/group-value';
 
-import 'valect/src/valect-minimal.css';
 
 export function ValectDropdown() {
   const fieldsetRef = useRef<HTMLFieldSetElement>(null);
@@ -10,13 +9,27 @@ export function ValectDropdown() {
     const fieldset = fieldsetRef.current;
     if (!fieldset) return;
 
-    const valect = new Valect(fieldset);
-    valect.wire();
+    const valect = new Valect();
+    valect.wire(fieldset);
+
+    const listener = (e: Event) => {
+      console.log(e.currentTarget);
+      const currentTarget: VtFieldSet = e.currentTarget as VtFieldSet;
+      console.log('value', currentTarget.value);
+      console.log('array', currentTarget.valueAsArray);
+      console.log('flat', currentTarget.valueAsFlatGroups());
+      console.log('tree', currentTarget.valueAsTreeGroups());
+    };
+
+    fieldsetRef.current.addEventListener('change', listener);
 
     return () => {
       valect.unwire();
+      fieldsetRef.current?.removeEventListener('change', listener);
     };
   }, []);
+
+  return <span>VelectDropdown placeholder</span>
 
   return (
     <fieldset

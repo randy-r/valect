@@ -9,5 +9,21 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      return;
+      setTimeout(() => {
+        const r1 = document.querySelector('#r1');
+        const r2 = document.querySelector('#r2');
+        let flip = false;
+        setInterval(() => {
+          let crt = r1;
+          if (flip) crt = r2;
+
+          crt.checked = true;
+          flip = !flip;
+          console.log(flip);
+        }, 2000);
+      }, 2000);
+    </script>
   </body>
 </html>

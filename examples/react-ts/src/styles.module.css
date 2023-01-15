@@ -1,0 +1,11 @@
+.selectionItem {
+  color: blueviolet;
+  padding-inline: 1em;
+}
+
+.valectProto {
+}
+
+.valectProto[data-vt-open='true'] {
+  outline: 2px solid salmon;
+}
